@@ -7,10 +7,11 @@ function Community() {
     const {id}=useParams()
     const [community,setCommunity]=useState([])
     const navigate=useNavigate()
-    useEffect(async()=>{
+
+   async function getCommunities(){
         try {
             let token=localStorage.getItem("token")
-            let res= await axios.get(`http://localhost:8000/community/get-community/${id}`,{
+            let res= await axios.get(`https://b44-web-067-project-cowardfunding.onrender.com/community/get-community/${id}`,{
                 headers:{
                     Authorization:`Breaar ${token}`
                 }
@@ -22,7 +23,9 @@ function Community() {
         catch (error) {
             console.log(error)
         }
-        
+    }
+    useEffect(()=>{
+        getCommunities()
     },[])
     return ( 
         <>
@@ -69,10 +72,11 @@ function Community() {
             <h1 className="w-full text-centre text-4xl font-bold my-2">OUR Donors</h1>
             <div className="grid grid-cols-2 gap-2 ">
                 {community.donors && community.donors.map((donor)=>(
-                    <div className="p-2 bg-green-400 rounded-sm">
-                        {donor.email}
-                        <br />
-                        {donor.isVerified?"verifeed":"notverfied"}
+                    <div className="p-2 bg-green-400 rounded-sm flex flex-wrap">
+                        <img src={donor.profileImage} alt="" className="rounded-full w-15 h-15" />
+                        <h1 className="m-5 font-bold m-1 text-xl text-left">{donor.name}</h1>
+                        <h1 className="w-full m-1 text-xl text-left">{donor.email}</h1>
+                        
                     </div>
                 ))}
             </div>

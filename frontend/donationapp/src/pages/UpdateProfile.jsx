@@ -43,7 +43,7 @@ function UpdateProfile() {
                 return;
             }
 
-            const response = await axios.post("http://localhost:8000/profile/upload/uufr", formData, {
+            const response = await axios.post("https://b44-web-067-project-cowardfunding.onrender.com/profile/upload/uufr", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization":`breare ${token}`, // Send the token in the Authorization header

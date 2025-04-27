@@ -11,7 +11,7 @@ function Login() {
         e.preventDefault()
         //console.log(password,email)
         try {
-            let res= await axios.post("http://localhost:8000/user/login/",
+            let res= await axios.post("https://b44-web-067-project-cowardfunding.onrender.com/user/login/",
                 {
                     email,password
                 }

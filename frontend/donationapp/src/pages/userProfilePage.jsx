@@ -16,7 +16,7 @@ function Profile() {
       try {
         const token = localStorage.getItem("token"); // Get token from localStorage or cookies
         //console.log(token)
-        const response = await axios.get("http://localhost:8000/user/get-userProfile", {
+        const response = await axios.get("https://b44-web-067-project-cowardfunding.onrender.com/user/get-userProfile", {
           headers: {
             Authorization:`brear ${token}`
           },

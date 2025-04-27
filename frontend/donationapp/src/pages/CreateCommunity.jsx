@@ -35,7 +35,7 @@ function CreateCommunity() {
                 console.log("token not present")
             }
             else{
-                let res=await axios.post("http://localhost:8000/community/create-community",formData,
+                let res=await axios.post("https://b44-web-067-project-cowardfunding.onrender.com/community/create-community",formData,
                     {
                     headers:
                     {   "Content-Type": "multipart/form-data",

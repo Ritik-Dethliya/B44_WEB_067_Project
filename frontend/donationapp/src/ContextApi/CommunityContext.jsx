@@ -10,7 +10,7 @@ export const CommunitiesContextProvider=({children})=>{
    const getCommunity=async()=>{
         try {
             let token=localStorage.getItem("token")
-            let res=await axios.get("http://localhost:8000/community/get-community/",{
+            let res=await axios.get("https://b44-web-067-project-cowardfunding.onrender.com/community/get-community/",{
                 headers:{
                     Authorization:`Bearea ${token}`
                 }

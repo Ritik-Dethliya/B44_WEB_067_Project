@@ -32,7 +32,7 @@ function DonationPage() {
         e.preventDefault()
         console.log("send request")
         try{
-            let res=await axios.post("http://localhost:8000/donation/add-donation/",{
+            let res=await axios.post(`https://b44-web-067-project-cowardfunding.onrender.com/donation/add-donation/${id}`,{
                 message,
                 amount,
                 transactionId:Math.random(),
