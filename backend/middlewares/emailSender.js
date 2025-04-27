@@ -48,6 +48,7 @@ export async function communityCreateMail(email,userName,category) {
 
   export async function donationemail(email,userName) {
     // send mail with defined transport object
+    console.log(email,userName)
     const info = await transporter.sendMail({
       from: '"Donation Villa" dethliya73@gmail.com',
       to: `${email}`, 

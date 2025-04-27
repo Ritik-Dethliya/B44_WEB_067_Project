@@ -3,19 +3,30 @@ import donationModel from '../models/donation.model.js'
 import authentication from '../middlewares/authmiddleware.js'
 import userModel from '../models/user.model.js'
 import { donationemail } from '../middlewares/emailSender.js'
+import communityModel from '../models/community.model.js'
 
 const donationRouter=e.Router()
 
-donationRouter.post('/add-donation',authentication ,async(req,res)=>{
+donationRouter.post('/add-donation/:id',authentication ,async(req,res)=>{
     try {
-        
+        let {id}=req.params
         req.body.donar=req.userid
         let newDonation=await donationModel.create(req.body)
         let newDonationid=newDonation._id
         let user=await userModel.findById(req.userid)
         user.donations.push(newDonationid._id)
         await user.save()
+
+        let community=await communityModel.findById(id)
+        let donars=community.donors
+        let ispresent=donars.findIndex((donorid)=>donorid==req.userid)
+        if(ispresent==-1){
+            community.donors.push(req.userid)
+        }
+        community.collectedAmount+=Number(req.body.amount)
+        await community.save()
         console.log(newDonationid)
+
         donationemail(user.email,user.name)
         res.status(201).send({"msg":"donation created Successful",newDonation})
     } catch (error) {
