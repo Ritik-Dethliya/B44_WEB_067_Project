@@ -36,8 +36,6 @@ profilUpload.post('/upload/:userId', upload.single('image'), async (req, res) =>
         }
       );
       if (req.file) {
-        
-        
         streamifier.createReadStream(req.file.buffer).pipe(result);
       } else {
         res.status(400).send('No file uploaded');
